@@ -8,16 +8,16 @@ public class SmartHomeSettingsData {
 
     @Id
     private String pDeviceId = "YFK_Smart";
-    private Double pTemperature = 0.0;
-    private Double pHumidity = 0.0;
-    private Float pLight = 0.0f;
-    private Float pCarbondioxide = 0.0f;
+    private Double pTemperature = 22.0;
+    private Double pHumidity = 70.0;
+    private Float pLight = 9.0f;
+    private Float pSoilPh = 6.6f;
 
     private String deviceId;
     private Double temperature;
     private Double humidity;
     private Float light;
-    private Float carbondioxide;
+    private Float soilPh;
 
     public SmartHomeSettingsData() {
     }
@@ -28,7 +28,7 @@ public class SmartHomeSettingsData {
             pTemperature = temperature;
             pHumidity = humidity;
             pLight = light;
-            pCarbondioxide = carbondioxide;
+            pSoilPh = soilPh;
         }
     }
 
@@ -64,12 +64,12 @@ public class SmartHomeSettingsData {
         this.light = light;
     }
 
-    public Float getCarbondioxide() {
-        return carbondioxide;
+    public Float getSoilPh() {
+        return soilPh;
     }
 
-    public void setCarbondioxide(Float carbondioxide) {
-        this.carbondioxide = carbondioxide;
+    public void setSoilPh(Float soilPh) {
+        this.soilPh = soilPh;
     }
 
     public boolean validateDeviceId(String deviceId) {
@@ -81,40 +81,32 @@ public class SmartHomeSettingsData {
         }
     }
 
-    public boolean validateTemperature(Double temperature) {
-        if (temperature.equals(pTemperature)) {
+    public boolean validateTemperature(Double temperature) { // celcius cinsinden sıcaklık değeri
+        if(temperature <= 30 && temperature >= 10) {
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
-    public boolean validateHumidity(Double humidity) {
-        if (humidity.equals(pHumidity)) {
+    public boolean validateHumidity(Double humidity) { // yüzde nem değeri
+        if (humidity <= 80 && humidity >= 60) {
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
-    public boolean validateLight(Float light) {
-        if (light.equals(pLight)) {
+    public boolean validateLight(Float light) { // bitkinin aldığı ışığın saat cinsinden değeri
+        if(light >= 6) {
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 
-    public boolean validateCarbondioxide(Float carbondioxide) {
-        if (carbondioxide.equals(pCarbondioxide)) {
+    public boolean validateSoilPh(Float soilPh) { // bitkinin toprağının ph değeri
+        if(soilPh <= 7 && soilPh >= 5) {
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
 }
 
