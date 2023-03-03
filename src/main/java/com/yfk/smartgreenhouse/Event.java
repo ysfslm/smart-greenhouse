@@ -1,13 +1,11 @@
 package com.yfk.smartgreenhouse;
 
-public enum Event {  // enumeration for CParser signals
+public enum Event {
     Power_on,
-    Ready_to_charge,
-    Vehicle_disconnected,
-    Start_charging,
-    Stop_charging,
-    Vehicle_connected,
     Failure_fixed,
     Failure,
-    Power_off  // init state
+    Power_off,
+    Stop_monitoring,
+    Ready_to_monitor,
+    Start_monitoring
 };

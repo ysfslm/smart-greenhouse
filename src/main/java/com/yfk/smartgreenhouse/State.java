@@ -3,8 +3,9 @@ package com.yfk.smartgreenhouse;
 public enum State {
     POWER_OFF,
     POWER_PRESENT,
-    READY_TO_CHARGE,
-    VEHICLE_CONNECTED,
-    VEHICLE_CHARGING,
-    TROUBLE
+    TROUBLE,
+    MONITORING,
+    START_MONITORING,
+    STOP_MONITORING,
+    READY_TO_MONITOR
 }

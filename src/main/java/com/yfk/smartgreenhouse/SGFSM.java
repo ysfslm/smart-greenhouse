@@ -38,6 +38,8 @@ public class SGFSM {
         if (e == Event.Power_off) {
             transition_to(State.POWER_OFF);
         }
+
+
         switch (myState) {
             case POWER_OFF:
                 // only following event(s) are valid: power_on
@@ -50,35 +52,24 @@ public class SGFSM {
             case POWER_PRESENT:
                 // only following event(s) are valid: ready_to_charge
                 switch (e) {
-                    case Ready_to_charge:
-                        transition_to(State.READY_TO_CHARGE);
+                    case Ready_to_monitor:
+                        transition_to(State.READY_TO_MONITOR);
                         break;
                 }
                 break;
-            case READY_TO_CHARGE:
+            case READY_TO_MONITOR:
                 // only following event(s) are valid: vehicle_connected
                 switch (e) {
-                    case Vehicle_connected:
-                        transition_to(State.VEHICLE_CONNECTED);
+                    case Start_monitoring:
+                        transition_to(State.START_MONITORING);
                         break;
                 }
                 break;
-            case VEHICLE_CONNECTED:
-                // only following event(s) are valid: start_charging, vehicle_disconnected
-                switch (e) {
-                    case Start_charging:
-                        transition_to(State.VEHICLE_CHARGING);
-                        break;
-                    case Vehicle_disconnected:
-                        transition_to(State.READY_TO_CHARGE);
-                        break;
-                }
-                break;
-            case VEHICLE_CHARGING:
+            case MONITORING:
                 switch (e) {
                     // only following event(s) are valid: stop_charging
-                    case Stop_charging:
-                        transition_to(State.VEHICLE_CONNECTED);
+                    case Stop_monitoring:
+                        transition_to(State.STOP_MONITORING);
                         break;
                 }
                 break;
@@ -86,12 +77,17 @@ public class SGFSM {
                 switch (e) {
                     // only following event(s) are valid: failer_fixed
                     case Failure_fixed:
-                        transition_to(State.READY_TO_CHARGE);
+                        transition_to(State.READY_TO_MONITOR);
                         break;
                 }
                 break;
 
         }
+
+
         return getState();
     }
+
+
+
 }

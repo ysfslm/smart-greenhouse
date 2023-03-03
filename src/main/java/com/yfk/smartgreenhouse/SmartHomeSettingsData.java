@@ -11,13 +11,12 @@ public class SmartHomeSettingsData {
     private Double pTemperature = 22.0;
     private Double pHumidity = 70.0;
     private Float pLight = 9.0f;
-    private Float pSoilPh = 6.6f;
 
     private String deviceId;
     private Double temperature;
     private Double humidity;
     private Float light;
-    private Float soilPh;
+
 
     public SmartHomeSettingsData() {
     }
@@ -28,7 +27,6 @@ public class SmartHomeSettingsData {
             pTemperature = temperature;
             pHumidity = humidity;
             pLight = light;
-            pSoilPh = soilPh;
         }
     }
 
@@ -64,13 +62,6 @@ public class SmartHomeSettingsData {
         this.light = light;
     }
 
-    public Float getSoilPh() {
-        return soilPh;
-    }
-
-    public void setSoilPh(Float soilPh) {
-        this.soilPh = soilPh;
-    }
 
     public boolean validateDeviceId(String deviceId) {
         if (deviceId.equals(pDeviceId)) {
@@ -102,11 +93,5 @@ public class SmartHomeSettingsData {
         return false;
     }
 
-    public boolean validateSoilPh(Float soilPh) { // bitkinin toprağının ph değeri
-        if(soilPh <= 7 && soilPh >= 5) {
-            return true;
-        }
-        return false;
-    }
 }
 

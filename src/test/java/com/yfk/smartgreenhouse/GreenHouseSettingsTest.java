@@ -42,15 +42,4 @@ public class GreenHouseSettingsTest {
         assertEquals(settings.validateLight(24.0000f),true);
     }
 
-    @Test
-    public void validateSoilPh() {
-        assertEquals(settings.validateSoilPh(-0.0001f),false);
-        assertEquals(settings.validateSoilPh(0.0f),false);
-        assertEquals(settings.validateSoilPh(4.9999f),false);
-        assertEquals(settings.validateSoilPh(5.0f),true);
-        assertEquals(settings.validateSoilPh(6.9999f),true);
-        assertEquals(settings.validateSoilPh(7.0f),true);
-        assertEquals(settings.validateSoilPh(7.0001f),false);
-    }
-
 }
