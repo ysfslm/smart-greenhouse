@@ -1,16 +1,16 @@
 package com.yfk.smartgreenhouse;
 
-public class SGFSM {
-    private void SGFSM() {}
+public class SGCSSM {
+    private void SGCSSM() {}
 
-    private static SGFSM sgfsm = null;
+    private static SGCSSM SGCSSM = null;
 
-    public static SGFSM getInstance () {
-        if (sgfsm == null) {
-            sgfsm = new SGFSM();
-            sgfsm.init(); // set state to POWER_OFF
+    public static SGCSSM getInstance () {
+        if (SGCSSM == null) {
+            SGCSSM = new SGCSSM();
+            SGCSSM.init();
         }
-        return sgfsm;
+        return SGCSSM;
     }
 
 
@@ -18,7 +18,7 @@ public class SGFSM {
     private State myState;
 
     private void init() {
-        transition_to(State.POWER_OFF);   // default transition
+        transition_to(State.POWER_OFF);
     }
 
     private void transition_to(State target_state) {
@@ -26,12 +26,12 @@ public class SGFSM {
     }
 
     public State getState() {
-        return myState;   // default transition
+        return myState;
     }
-    // FMS
 
-    public State triggerFMS(Event e) {
-        // in any state, following events are valid: failure, power_off
+
+    public State triggerSGCSSM(Event e) {
+
         if ( e == Event.Failure) {
             transition_to(State.TROUBLE);
         }
@@ -42,7 +42,6 @@ public class SGFSM {
 
         switch (myState) {
             case POWER_OFF:
-                // only following event(s) are valid: power_on
                 switch (e) {
                     case Power_on:
                         transition_to(State.POWER_PRESENT);
@@ -50,7 +49,6 @@ public class SGFSM {
                 }
                 break;
             case POWER_PRESENT:
-                // only following event(s) are valid: ready_to_charge
                 switch (e) {
                     case Ready_to_monitor:
                         transition_to(State.READY_TO_MONITOR);
@@ -58,24 +56,21 @@ public class SGFSM {
                 }
                 break;
             case READY_TO_MONITOR:
-                // only following event(s) are valid: vehicle_connected
                 switch (e) {
                     case Start_monitoring:
-                        transition_to(State.START_MONITORING);
+                        transition_to(State.MONITORING);
                         break;
                 }
                 break;
             case MONITORING:
                 switch (e) {
-                    // only following event(s) are valid: stop_charging
                     case Stop_monitoring:
-                        transition_to(State.STOP_MONITORING);
+                        transition_to(State.READY_TO_MONITOR);
                         break;
                 }
                 break;
             case TROUBLE:
                 switch (e) {
-                    // only following event(s) are valid: failer_fixed
                     case Failure_fixed:
                         transition_to(State.READY_TO_MONITOR);
                         break;

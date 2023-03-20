@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table
-public class SmartHomeSettingsData {
+public class ControlSensorSettingsData {
 
     @Id
     private String pDeviceId = "YFK_Smart";
@@ -18,10 +18,10 @@ public class SmartHomeSettingsData {
     private Float light;
 
 
-    public SmartHomeSettingsData() {
+    public ControlSensorSettingsData() {
     }
 
-    public SmartHomeSettingsData(boolean preSet) {
+    public ControlSensorSettingsData(boolean preSet) {
         if(preSet == true) {
             pDeviceId = deviceId;
             pTemperature = temperature;
