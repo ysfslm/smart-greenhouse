@@ -3,13 +3,14 @@ package com.yfk.smartgreenhouse;
 import org.junit.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class GreenHouseSettingsTest {
 
     ControlSensorSettingsData settings = new ControlSensorSettingsData(true);
 
     @Test
     public void validateTemperature() {
-        assertEquals(settings.validateTemperature(0.0),false);
+        assertEquals(settings.validateTemperature(-5.0),false);
         assertEquals(settings.validateTemperature(9.9),false);
         assertEquals(settings.validateTemperature(10.0),true);
         assertEquals(settings.validateTemperature(22.4),true);
@@ -38,5 +39,6 @@ public class GreenHouseSettingsTest {
         assertEquals(settings.validateLight(12.0f),true);
         assertEquals(settings.validateLight(24.0f),true);
     }
+
 
 }
